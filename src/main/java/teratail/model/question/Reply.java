@@ -1,25 +1,33 @@
 package teratail.model.question;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.ToString;
 import teratail.model.user.User;
 
 import java.io.Serializable;
-import java.util.Date;
 
 @Data
 @ToString
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Reply implements Serializable {
 
+  @JsonProperty("body")
   private String body;
 
+  @JsonProperty("body_str")
   private String bodyStr;
 
-  private Date created;
+  @JsonProperty("created")
+  private String created;
 
-  private Date modified;
+  @JsonProperty("modified")
+  private String modified;
 
-  private boolean isBestAnswer;
+  @JsonProperty("is_best_answer")
+  private Boolean isBestAnswer;
 
+  @JsonProperty("user")
   private User user;
 }

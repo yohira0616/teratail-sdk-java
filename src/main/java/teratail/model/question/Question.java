@@ -1,45 +1,61 @@
 package teratail.model.question;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.ToString;
-import teratail.model.tag.Tag;
 import teratail.model.user.User;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 @Data
 @ToString
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Question implements Serializable {
 
-  private int id;
+  @JsonProperty("id")
+  private Integer id;
 
+  @JsonProperty("title")
   private String title;
 
+  @JsonProperty("body")
   private String body;
 
+  @JsonProperty("body_str")
   private String bodyStr;
 
-  private Date created;
+  @JsonProperty("created")
+  private String created;
 
-  private Date modifired;
+  @JsonProperty("modified")
+  private String modified;
 
-  private int countReply;
+  @JsonProperty("count_reply")
+  private Integer countReply;
 
-  private int countClip;
+  @JsonProperty("count_clip")
+  private Integer countClip;
 
-  private int countPv;
+  @JsonProperty("count_pv")
+  private Integer countPv;
 
-  private boolean isBiginner;
+  @JsonProperty("is_beginner")
+  private Boolean isBeginner;
 
-  private boolean isAccepted;
+  @JsonProperty("is_accepted")
+  private Boolean isAccepted;
 
-  private boolean isPresentation;
+  @JsonProperty("is_presentation")
+  private Boolean isPresentation;
 
-  private List<Tag> tags;
+  @JsonProperty("tags")
+  private List<String> tags;
 
+  @JsonProperty("user")
   private User user;
 
+  @JsonProperty("replies")
   private List<Reply> replies;
 }

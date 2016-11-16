@@ -4,8 +4,10 @@ import lombok.Data;
 import teratail.model.Meta;
 import teratail.model.question.Question;
 
+import java.io.Serializable;
+
 @Data
-public class QuestionEntity {
+public class QuestionEntity implements Serializable {
 
   private Meta meta;
 

@@ -1,5 +1,6 @@
 package teratail.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import teratail.model.response.QuestionListEntity;
 import teratail.model.response.TagListEntity;
 import teratail.model.response.UserEntity;
@@ -10,7 +11,9 @@ public class UserService implements UserServiceSpec {
 
   private String accessToken = "";
 
-  private static final String API_BASE = "users/";
+  private static final String API_BASE = "users";
+
+  private ObjectMapper objectMapper = new ObjectMapper();
 
   public UserService() {
 

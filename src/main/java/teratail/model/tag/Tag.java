@@ -1,18 +1,23 @@
 package teratail.model.tag;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.ToString;
 
 import java.io.Serializable;
-import java.util.Date;
 
 @Data
 @ToString
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Tag implements Serializable {
 
+  @JsonProperty("tag_name")
   private String tagName;
 
+  @JsonProperty("explain")
   private String explain;
 
-  private Date created;
+  @JsonProperty("created")
+  private String created;
 }
