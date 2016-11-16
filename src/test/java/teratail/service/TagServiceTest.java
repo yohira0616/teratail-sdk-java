@@ -19,9 +19,22 @@ public class TagServiceTest {
   }
 
   @Test
-  public void test() {
+  public void findAllTest() {
+    //TODO test code
+
+
+  }
+
+  @Test
+  public void fineOneTest(){
     TagEntity entity = service.findOne("ActionScript");
     assertThat(entity.getMeta().getMessage(), is("success"));
+
+  }
+
+  @Test
+  public void findByTagNameTest(){
+    //TODO test code
 
   }
 }
