@@ -1,12 +1,15 @@
 package teratail.model.question;
 
 import lombok.Data;
+import lombok.ToString;
 import teratail.model.user.User;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
-public class Reply {
+@ToString
+public class Reply implements Serializable {
 
     private String body;
 

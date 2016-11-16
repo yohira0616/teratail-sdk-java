@@ -1,9 +1,13 @@
 package teratail.model.user;
 
 import lombok.Data;
+import lombok.ToString;
+
+import java.io.Serializable;
 
 @Data
-public class Ranking {
+@ToString
+public class Ranking implements Serializable {
 
     private int rank;
 

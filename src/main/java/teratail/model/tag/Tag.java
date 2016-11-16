@@ -1,11 +1,14 @@
 package teratail.model.tag;
 
 import lombok.Data;
+import lombok.ToString;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
-public class Tag {
+@ToString
+public class Tag implements Serializable {
 
     private String tagName;
 

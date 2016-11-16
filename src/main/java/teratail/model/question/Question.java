@@ -1,14 +1,17 @@
 package teratail.model.question;
 
 import lombok.Data;
+import lombok.ToString;
 import teratail.model.tag.Tag;
 import teratail.model.user.User;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 @Data
-public class Question {
+@ToString
+public class Question implements Serializable{
 
     private int id;
 

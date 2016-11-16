@@ -1,13 +1,16 @@
 package teratail.model.user;
 
 import lombok.Data;
+import lombok.ToString;
 import teratail.model.tag.Tag;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 @Data
-public class User {
+@ToString
+public class User implements Serializable {
 
     private String displayName;
 

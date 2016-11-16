@@ -1,9 +1,13 @@
 package teratail.model.user;
 
 import lombok.Data;
+import lombok.ToString;
+
+import java.io.Serializable;
 
 @Data
-public class Sns {
+@ToString
+public class Sns implements Serializable {
 
     private String facebook;
 
