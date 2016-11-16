@@ -8,6 +8,17 @@ import teratail.service.spec.UserServiceSpec;
 import java.util.List;
 
 public class UserService implements UserServiceSpec {
+
+  private String accessToken = "";
+
+  public UserService() {
+
+  }
+
+  public UserService(String accessToken) {
+    this.accessToken = accessToken;
+  }
+
   @Override
   public List<User> findAll() {
     return null;

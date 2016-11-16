@@ -7,6 +7,16 @@ import teratail.service.spec.TagServiceSpec;
 import java.util.List;
 
 public class TagService implements TagServiceSpec {
+  private String accessToken = "";
+
+  public TagService() {
+
+  }
+
+  public TagService(String accessToken) {
+    this.accessToken = accessToken;
+  }
+
   @Override
   public List<Tag> findAll() {
     return null;

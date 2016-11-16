@@ -1,15 +1,10 @@
 package teratail.service;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.util.EntityUtils;
-import teratail.TerarailClient;
-import teratail.common.JacksonHelper;
 import teratail.common.ResultEntityParser;
 import teratail.common.TeratailHost;
 import teratail.model.Meta;
@@ -19,9 +14,18 @@ import teratail.service.spec.QuestionServiceSpec;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class QuestionService implements QuestionServiceSpec {
+
+  private String accessToken = "";
+
+  public QuestionService() {
+
+  }
+
+  public QuestionService(String accessToken) {
+    this.accessToken = accessToken;
+  }
 
   public static void main(String... args) {
 
