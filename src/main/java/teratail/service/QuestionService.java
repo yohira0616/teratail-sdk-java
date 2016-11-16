@@ -19,6 +19,8 @@ public class QuestionService implements QuestionServiceSpec {
 
   private String accessToken = "";
 
+  private static final String API_BASE = "questions/";
+
   public QuestionService() {
 
   }

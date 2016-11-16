@@ -9,6 +9,8 @@ import java.util.List;
 public class TagService implements TagServiceSpec {
   private String accessToken = "";
 
+  private static final String API_BASE = "tags/";
+
   public TagService() {
 
   }

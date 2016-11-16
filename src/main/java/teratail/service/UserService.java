@@ -11,6 +11,8 @@ public class UserService implements UserServiceSpec {
 
   private String accessToken = "";
 
+  private static final String API_BASE = "users/";
+
   public UserService() {
 
   }
