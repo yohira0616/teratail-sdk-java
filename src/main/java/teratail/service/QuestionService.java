@@ -9,6 +9,8 @@ import teratail.common.ResultEntityParser;
 import teratail.common.TeratailHost;
 import teratail.model.Meta;
 import teratail.model.question.Question;
+import teratail.model.response.QuestionEntity;
+import teratail.model.response.QuestionListEntity;
 import teratail.service.spec.QuestionServiceSpec;
 
 import java.io.IOException;
@@ -52,12 +54,12 @@ public class QuestionService implements QuestionServiceSpec {
   }
 
   @Override
-  public List<Question> findAll() {
+  public QuestionListEntity findAll() {
     return null;
   }
 
   @Override
-  public Question findOne(int questionId) {
+  public QuestionEntity findOne(int questionId) {
     return null;
   }
 }

@@ -1,6 +1,8 @@
 package teratail.service;
 
 import teratail.model.question.Question;
+import teratail.model.response.TagEntity;
+import teratail.model.response.TagListEntity;
 import teratail.model.tag.Tag;
 import teratail.service.spec.TagServiceSpec;
 
@@ -20,17 +22,17 @@ public class TagService implements TagServiceSpec {
   }
 
   @Override
-  public List<Tag> findAll() {
+  public TagListEntity findAll() {
     return null;
   }
 
   @Override
-  public Tag findOne(String tagName) {
+  public TagEntity findOne(String tagName) {
     return null;
   }
 
   @Override
-  public List<Question> findByTagName(String tagName) {
+  public TagListEntity findByTagName(String tagName) {
     return null;
   }
 }

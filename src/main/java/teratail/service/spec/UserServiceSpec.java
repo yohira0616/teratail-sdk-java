@@ -1,28 +1,27 @@
 package teratail.service.spec;
 
-import teratail.model.question.Question;
-import teratail.model.tag.Tag;
-import teratail.model.user.User;
-
-import java.util.List;
+import teratail.model.response.QuestionListEntity;
+import teratail.model.response.TagListEntity;
+import teratail.model.response.UserEntity;
+import teratail.model.response.UserListEntity;
 
 public interface UserServiceSpec {
 
-  List<User> findAll();
+  UserListEntity findAll();
 
-  List<User> findByName(String query);
+  UserListEntity findByName(String query);
 
-  User findOne(String displayName);
+  UserEntity findOne(String displayName);
 
-  List<Tag> findMyTags(String displayName);
+  TagListEntity findMyTags(String displayName);
 
-  List<Question> findClippedQuestion(String displayName);
+  QuestionListEntity findClippedQuestion(String displayName);
 
-  List<Question> findAnswered(String displayName);
+  QuestionListEntity findAnswered(String displayName);
 
-  List<Question> findAsked(String displayName);
+  QuestionListEntity findAsked(String displayName);
 
-  List<User> getFollower(String displayName);
+  UserListEntity getFollower(String displayName);
 
-  List<User> getFollowee(String displayName);
+  UserListEntity getFollowee(String displayName);
 }

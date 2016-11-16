@@ -1,15 +1,13 @@
 package teratail.service.spec;
 
-import teratail.model.question.Question;
-import teratail.model.tag.Tag;
-
-import java.util.List;
+import teratail.model.response.TagEntity;
+import teratail.model.response.TagListEntity;
 
 public interface TagServiceSpec {
 
-  List<Tag> findAll();
+  TagListEntity findAll();
 
-  Tag findOne(String tagName);
+  TagEntity findOne(String tagName);
 
-  List<Question> findByTagName(String tagName);
+  TagListEntity findByTagName(String tagName);
 }

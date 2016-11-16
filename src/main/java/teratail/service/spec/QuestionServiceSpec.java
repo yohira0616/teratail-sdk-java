@@ -1,12 +1,11 @@
 package teratail.service.spec;
 
-import teratail.model.question.Question;
-
-import java.util.List;
+import teratail.model.response.QuestionEntity;
+import teratail.model.response.QuestionListEntity;
 
 public interface QuestionServiceSpec {
 
-  List<Question> findAll();
+  QuestionListEntity findAll();
 
-  Question findOne(int questionId);
+  QuestionEntity findOne(int questionId);
 }

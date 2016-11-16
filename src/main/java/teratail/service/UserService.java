@@ -1,11 +1,10 @@
 package teratail.service;
 
-import teratail.model.question.Question;
-import teratail.model.tag.Tag;
-import teratail.model.user.User;
+import teratail.model.response.QuestionListEntity;
+import teratail.model.response.TagListEntity;
+import teratail.model.response.UserEntity;
+import teratail.model.response.UserListEntity;
 import teratail.service.spec.UserServiceSpec;
-
-import java.util.List;
 
 public class UserService implements UserServiceSpec {
 
@@ -22,47 +21,47 @@ public class UserService implements UserServiceSpec {
   }
 
   @Override
-  public List<User> findAll() {
+  public UserListEntity findAll() {
     return null;
   }
 
   @Override
-  public List<User> findByName(String query) {
+  public UserListEntity findByName(String query) {
     return null;
   }
 
   @Override
-  public User findOne(String displayName) {
+  public UserEntity findOne(String displayName) {
     return null;
   }
 
   @Override
-  public List<Tag> findMyTags(String displayName) {
+  public TagListEntity findMyTags(String displayName) {
     return null;
   }
 
   @Override
-  public List<Question> findClippedQuestion(String displayName) {
+  public QuestionListEntity findClippedQuestion(String displayName) {
     return null;
   }
 
   @Override
-  public List<Question> findAnswered(String displayName) {
+  public QuestionListEntity findAnswered(String displayName) {
     return null;
   }
 
   @Override
-  public List<Question> findAsked(String displayName) {
+  public QuestionListEntity findAsked(String displayName) {
     return null;
   }
 
   @Override
-  public List<User> getFollower(String displayName) {
+  public UserListEntity getFollower(String displayName) {
     return null;
   }
 
   @Override
-  public List<User> getFollowee(String displayName) {
+  public UserListEntity getFollowee(String displayName) {
     return null;
   }
 }
