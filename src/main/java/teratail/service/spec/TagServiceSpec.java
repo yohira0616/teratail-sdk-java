@@ -1,7 +1,8 @@
 package teratail.service.spec;
 
-import teratail.model.response.TagEntity;
-import teratail.model.response.TagListEntity;
+import teratail.model.response.tag.TagEntity;
+import teratail.model.response.tag.TagListEntity;
+import teratail.model.response.tag.TagQuestionEntity;
 
 public interface TagServiceSpec {
 
@@ -9,5 +10,5 @@ public interface TagServiceSpec {
 
   TagEntity findOne(String tagName);
 
-  TagListEntity findByTagName(String tagName);
+  TagQuestionEntity findByTagName(String tagName);
 }

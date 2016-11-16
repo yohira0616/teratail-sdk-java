@@ -2,8 +2,8 @@ package teratail.service;
 
 import org.junit.Before;
 import org.junit.Test;
-import teratail.model.response.QuestionEntity;
-import teratail.model.response.QuestionListEntity;
+import teratail.model.response.question.QuestionEntity;
+import teratail.model.response.question.QuestionListEntity;
 import teratail.service.spec.QuestionServiceSpec;
 
 import static org.hamcrest.core.Is.is;

@@ -1,9 +1,9 @@
 package teratail.service.spec;
 
-import teratail.model.response.QuestionListEntity;
-import teratail.model.response.TagListEntity;
-import teratail.model.response.UserEntity;
-import teratail.model.response.UserListEntity;
+import teratail.model.response.question.QuestionListEntity;
+import teratail.model.response.tag.TagListEntity;
+import teratail.model.response.user.UserEntity;
+import teratail.model.response.user.UserListEntity;
 
 public interface UserServiceSpec {
 
@@ -17,11 +17,11 @@ public interface UserServiceSpec {
 
   QuestionListEntity findClippedQuestion(String displayName);
 
-  QuestionListEntity findAnswered(String displayName);
+  QuestionListEntity findQuestions(String displayName);
 
-  QuestionListEntity findAsked(String displayName);
+  QuestionListEntity findReplies(String displayName);
 
   UserListEntity getFollower(String displayName);
 
-  UserListEntity getFollowee(String displayName);
+  UserListEntity getFollowing(String displayName);
 }

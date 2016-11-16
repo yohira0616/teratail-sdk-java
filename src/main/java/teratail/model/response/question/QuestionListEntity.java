@@ -1,4 +1,4 @@
-package teratail.model.response;
+package teratail.model.response.question;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;

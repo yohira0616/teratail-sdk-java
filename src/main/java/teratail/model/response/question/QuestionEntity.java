@@ -1,4 +1,4 @@
-package teratail.model.response;
+package teratail.model.response.question;
 
 import lombok.Data;
 import teratail.model.Meta;

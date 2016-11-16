@@ -7,8 +7,9 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
 import teratail.common.TeratailHost;
-import teratail.model.response.TagEntity;
-import teratail.model.response.TagListEntity;
+import teratail.model.response.tag.TagEntity;
+import teratail.model.response.tag.TagListEntity;
+import teratail.model.response.tag.TagQuestionEntity;
 import teratail.service.spec.TagServiceSpec;
 
 import java.io.IOException;
@@ -55,7 +56,15 @@ public class TagService implements TagServiceSpec {
   }
 
   @Override
-  public TagListEntity findByTagName(String tagName) {
-    return null;
+  public TagQuestionEntity findByTagName(String tagName) {
+    try {
+      HttpClient client = HttpClientBuilder.create().build();
+      HttpGet httpGet = new HttpGet(TeratailHost.HOST + API_BASE + "/" + tagName + "/questions");
+      HttpResponse response = client.execute(httpGet);
+      return objectMapper.readValue(response.getEntity().getContent(), TagQuestionEntity.class);
+    } catch (IOException e) {
+      e.printStackTrace();
+      throw new RuntimeException();
+    }
   }
 }

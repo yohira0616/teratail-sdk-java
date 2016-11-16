@@ -7,8 +7,8 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
 import teratail.common.TeratailHost;
-import teratail.model.response.QuestionEntity;
-import teratail.model.response.QuestionListEntity;
+import teratail.model.response.question.QuestionEntity;
+import teratail.model.response.question.QuestionListEntity;
 import teratail.service.spec.QuestionServiceSpec;
 
 import java.io.IOException;

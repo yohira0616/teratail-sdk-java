@@ -3,7 +3,7 @@ package teratail.service;
 
 import org.junit.Before;
 import org.junit.Test;
-import teratail.model.response.TagEntity;
+import teratail.model.response.tag.TagEntity;
 import teratail.service.spec.TagServiceSpec;
 
 import static org.hamcrest.core.Is.is;
