@@ -9,15 +9,15 @@ import java.io.Serializable;
 @ToString
 public class Sns implements Serializable {
 
-    private String facebook;
+  private String facebook;
 
-    private String twitter;
+  private String twitter;
 
-    private String google;
+  private String google;
 
-    private String github;
+  private String github;
 
-    private String hatena;
+  private String hatena;
 
-    private String qiita;
+  private String qiita;
 }

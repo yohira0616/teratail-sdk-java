@@ -1,7 +1,15 @@
 package teratail.service.spec;
 
-/**
- * Created by yukitoohira on 2016/11/16.
- */
+import teratail.model.question.Question;
+import teratail.model.tag.Tag;
+
+import java.util.List;
+
 public interface TagServiceSpec {
+
+  List<Tag> findAll();
+
+  Tag findOne(String tagName);
+
+  List<Question> findByTagName(String tagName);
 }

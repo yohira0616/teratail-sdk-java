@@ -11,35 +11,35 @@ import java.util.List;
 
 @Data
 @ToString
-public class Question implements Serializable{
+public class Question implements Serializable {
 
-    private int id;
+  private int id;
 
-    private String title;
+  private String title;
 
-    private String body;
+  private String body;
 
-    private String bodyStr;
+  private String bodyStr;
 
-    private Date created;
+  private Date created;
 
-    private Date modifired;
+  private Date modifired;
 
-    private int countReply;
+  private int countReply;
 
-    private int countClip;
+  private int countClip;
 
-    private int countPv;
+  private int countPv;
 
-    private boolean isBiginner;
+  private boolean isBiginner;
 
-    private boolean isAccepted;
+  private boolean isAccepted;
 
-    private boolean isPresentation;
+  private boolean isPresentation;
 
-    private List<Tag> tags;
+  private List<Tag> tags;
 
-    private User user;
+  private User user;
 
-    private List<Reply> replies;
+  private List<Reply> replies;
 }

@@ -12,29 +12,29 @@ import java.util.List;
 @ToString
 public class User implements Serializable {
 
-    private String displayName;
+  private String displayName;
 
-    private Date created;
+  private Date created;
 
-    private Date modified;
+  private Date modified;
 
-    private String photo;
+  private String photo;
 
-    private String department;
+  private String department;
 
-    private String prefecture;
+  private String prefecture;
 
-    private String selfIntro;
+  private String selfIntro;
 
-    private String blog;
+  private String blog;
 
-    private int score;
+  private int score;
 
-    private ScoreRanking scoreRanking;
+  private ScoreRanking scoreRanking;
 
-    private List<Tag> tags;
+  private List<Tag> tags;
 
-    private Sns sns;
+  private Sns sns;
 
-    private List<Badge> badges;
+  private List<Badge> badges;
 }

@@ -10,9 +10,9 @@ import java.util.Date;
 @ToString
 public class Tag implements Serializable {
 
-    private String tagName;
+  private String tagName;
 
-    private String explain;
+  private String explain;
 
-    private Date created;
+  private Date created;
 }

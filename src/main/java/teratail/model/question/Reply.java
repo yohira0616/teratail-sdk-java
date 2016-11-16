@@ -11,15 +11,15 @@ import java.util.Date;
 @ToString
 public class Reply implements Serializable {
 
-    private String body;
+  private String body;
 
-    private String bodyStr;
+  private String bodyStr;
 
-    private Date created;
+  private Date created;
 
-    private Date modified;
+  private Date modified;
 
-    private boolean isBestAnswer;
+  private boolean isBestAnswer;
 
-    private User user;
+  private User user;
 }

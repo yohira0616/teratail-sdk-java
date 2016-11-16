@@ -10,6 +10,6 @@ import java.util.Date;
 @ToString
 public class Badge implements Serializable {
 
-    private int level;
-    private Date aquiredDate;
+  private int level;
+  private Date aquiredDate;
 }

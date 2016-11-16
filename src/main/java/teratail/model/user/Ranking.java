@@ -9,7 +9,7 @@ import java.io.Serializable;
 @ToString
 public class Ranking implements Serializable {
 
-    private int rank;
+  private int rank;
 
-    private int score;
+  private int score;
 }
