@@ -8,6 +8,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
 import teratail.common.ApiClientUtil;
+import teratail.common.ObjectMapperUtil;
 import teratail.common.TeratailHost;
 import teratail.model.Pagination;
 import teratail.model.response.question.QuestionEntity;
@@ -21,7 +22,7 @@ public class QuestionService implements QuestionServiceSpec {
 
   private String accessToken = "";
 
-  private ObjectMapper objectMapper = new ObjectMapper().setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
+  private ObjectMapper objectMapper = ObjectMapperUtil.getInstance();
 
   private static final String API_BASE = "questions";
 

@@ -9,6 +9,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicHeader;
 import teratail.common.ApiClientUtil;
+import teratail.common.ObjectMapperUtil;
 import teratail.common.TeratailHost;
 import teratail.model.Pagination;
 import teratail.model.response.question.QuestionListEntity;
@@ -27,7 +28,7 @@ public class UserService implements UserServiceSpec {
 
   private static final String API_BASE = "users";
 
-  private ObjectMapper objectMapper = new ObjectMapper().setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
+  private ObjectMapper objectMapper = ObjectMapperUtil.getInstance();
 
   public UserService() {
 
