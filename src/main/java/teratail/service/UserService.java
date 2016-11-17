@@ -51,7 +51,16 @@ public class UserService implements UserServiceSpec {
 
   @Override
   public UserListEntity findAll(Pagination pagination) {
-    return null;
+    try {
+      List<Header> header = ApiClientUtil.makeRequestHeader(accessToken);
+      HttpClient client = HttpClientBuilder.create().setDefaultHeaders(header).build();
+      HttpGet httpGet = new HttpGet(TeratailHost.HOST + API_BASE + ApiClientUtil.makeRequestParameter(pagination));
+      HttpResponse response = client.execute(httpGet);
+      return objectMapper.readValue(response.getEntity().getContent(), UserListEntity.class);
+    } catch (IOException e) {
+      e.printStackTrace();
+      throw new RuntimeException();
+    }
   }
 
   @Override
@@ -70,7 +79,17 @@ public class UserService implements UserServiceSpec {
 
   @Override
   public UserListEntity findByName(String query, Pagination pagination) {
-    return null;
+    try {
+      List<Header> header = ApiClientUtil.makeRequestHeader(accessToken);
+      HttpClient client = HttpClientBuilder.create().setDefaultHeaders(header).build();
+      HttpGet httpGet = new HttpGet(TeratailHost.HOST + API_BASE + "/search" +
+          ApiClientUtil.makeRequestParameter(pagination) + "&q=" + query);
+      HttpResponse response = client.execute(httpGet);
+      return objectMapper.readValue(response.getEntity().getContent(), UserListEntity.class);
+    } catch (IOException e) {
+      e.printStackTrace();
+      throw new RuntimeException();
+    }
   }
 
   @Override
@@ -103,7 +122,17 @@ public class UserService implements UserServiceSpec {
 
   @Override
   public TagListEntity findMyTags(String displayName, Pagination pagination) {
-    return null;
+    try {
+      List<Header> header = ApiClientUtil.makeRequestHeader(accessToken);
+      HttpClient client = HttpClientBuilder.create().setDefaultHeaders(header).build();
+      HttpGet httpGet = new HttpGet(TeratailHost.HOST + API_BASE + "/" + displayName + "/tags"
+          + ApiClientUtil.makeRequestParameter(pagination));
+      HttpResponse response = client.execute(httpGet);
+      return objectMapper.readValue(response.getEntity().getContent(), TagListEntity.class);
+    } catch (IOException e) {
+      e.printStackTrace();
+      throw new RuntimeException();
+    }
   }
 
   @Override
@@ -122,7 +151,17 @@ public class UserService implements UserServiceSpec {
 
   @Override
   public QuestionListEntity findClippedQuestion(String displayName, Pagination pagination) {
-    return null;
+    try {
+      List<Header> header = ApiClientUtil.makeRequestHeader(accessToken);
+      HttpClient client = HttpClientBuilder.create().setDefaultHeaders(header).build();
+      HttpGet httpGet = new HttpGet(TeratailHost.HOST + API_BASE + "/" + displayName + "/clips"
+          + ApiClientUtil.makeRequestParameter(pagination));
+      HttpResponse response = client.execute(httpGet);
+      return objectMapper.readValue(response.getEntity().getContent(), QuestionListEntity.class);
+    } catch (IOException e) {
+      e.printStackTrace();
+      throw new RuntimeException();
+    }
   }
 
   @Override
@@ -141,7 +180,17 @@ public class UserService implements UserServiceSpec {
 
   @Override
   public QuestionListEntity findQuestions(String displayName, Pagination pagination) {
-    return null;
+    try {
+      List<Header> header = ApiClientUtil.makeRequestHeader(accessToken);
+      HttpClient client = HttpClientBuilder.create().setDefaultHeaders(header).build();
+      HttpGet httpGet = new HttpGet(TeratailHost.HOST + API_BASE + "/" + displayName + "/questions"
+          + ApiClientUtil.makeRequestParameter(pagination));
+      HttpResponse response = client.execute(httpGet);
+      return objectMapper.readValue(response.getEntity().getContent(), QuestionListEntity.class);
+    } catch (IOException e) {
+      e.printStackTrace();
+      throw new RuntimeException();
+    }
   }
 
   @Override
@@ -160,7 +209,17 @@ public class UserService implements UserServiceSpec {
 
   @Override
   public QuestionListEntity findReplies(String displayName, Pagination pagination) {
-    return null;
+    try {
+      List<Header> header = ApiClientUtil.makeRequestHeader(accessToken);
+      HttpClient client = HttpClientBuilder.create().setDefaultHeaders(header).build();
+      HttpGet httpGet = new HttpGet(TeratailHost.HOST + API_BASE + "/" + displayName + "/replies"
+          + ApiClientUtil.makeRequestParameter(pagination));
+      HttpResponse response = client.execute(httpGet);
+      return objectMapper.readValue(response.getEntity().getContent(), QuestionListEntity.class);
+    } catch (IOException e) {
+      e.printStackTrace();
+      throw new RuntimeException();
+    }
   }
 
   @Override
@@ -179,7 +238,16 @@ public class UserService implements UserServiceSpec {
 
   @Override
   public UserListEntity getFollower(String displayName, Pagination pagination) {
-    return null;
+    try {
+      List<Header> header = ApiClientUtil.makeRequestHeader(accessToken);
+      HttpClient client = HttpClientBuilder.create().setDefaultHeaders(header).build();
+      HttpGet httpGet = new HttpGet(TeratailHost.HOST + API_BASE + "/" + displayName + "/followers" + ApiClientUtil.makeRequestParameter(pagination));
+      HttpResponse response = client.execute(httpGet);
+      return objectMapper.readValue(response.getEntity().getContent(), UserListEntity.class);
+    } catch (IOException e) {
+      e.printStackTrace();
+      throw new RuntimeException();
+    }
   }
 
   @Override
@@ -198,6 +266,16 @@ public class UserService implements UserServiceSpec {
 
   @Override
   public UserListEntity getFollowing(String displayName, Pagination pagination) {
-    return null;
+    try {
+      List<Header> header = ApiClientUtil.makeRequestHeader(accessToken);
+      HttpClient client = HttpClientBuilder.create().setDefaultHeaders(header).build();
+      HttpGet httpGet = new HttpGet(TeratailHost.HOST + API_BASE + "/" + displayName + "/followings"
+          + ApiClientUtil.makeRequestParameter(pagination));
+      HttpResponse response = client.execute(httpGet);
+      return objectMapper.readValue(response.getEntity().getContent(), UserListEntity.class);
+    } catch (IOException e) {
+      e.printStackTrace();
+      throw new RuntimeException();
+    }
   }
 }
