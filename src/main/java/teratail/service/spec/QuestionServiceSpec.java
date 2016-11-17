@@ -1,6 +1,6 @@
 package teratail.service.spec;
 
-import teratail.model.Pagination;
+import teratail.model.request.Pagination;
 import teratail.model.response.question.QuestionEntity;
 import teratail.model.response.question.QuestionListEntity;
 

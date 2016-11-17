@@ -1,4 +1,4 @@
-package teratail.model;
+package teratail.model.request;
 
 import lombok.Data;
 

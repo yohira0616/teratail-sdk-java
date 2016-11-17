@@ -1,17 +1,15 @@
 package teratail.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.message.BasicHeader;
 import teratail.common.ApiClientUtil;
 import teratail.common.ObjectMapperUtil;
 import teratail.common.TeratailHost;
-import teratail.model.Pagination;
+import teratail.model.request.Pagination;
 import teratail.model.response.question.QuestionListEntity;
 import teratail.model.response.tag.TagListEntity;
 import teratail.model.response.user.UserEntity;
@@ -19,7 +17,6 @@ import teratail.model.response.user.UserListEntity;
 import teratail.service.spec.UserServiceSpec;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class UserService implements UserServiceSpec {

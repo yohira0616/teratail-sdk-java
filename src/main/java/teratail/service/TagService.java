@@ -1,7 +1,6 @@
 package teratail.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -10,7 +9,7 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import teratail.common.ApiClientUtil;
 import teratail.common.ObjectMapperUtil;
 import teratail.common.TeratailHost;
-import teratail.model.Pagination;
+import teratail.model.request.Pagination;
 import teratail.model.response.tag.TagEntity;
 import teratail.model.response.tag.TagListEntity;
 import teratail.model.response.tag.TagQuestionEntity;

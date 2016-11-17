@@ -2,7 +2,7 @@ package teratail.common;
 
 import org.apache.http.Header;
 import org.apache.http.message.BasicHeader;
-import teratail.model.Pagination;
+import teratail.model.request.Pagination;
 
 import java.util.ArrayList;
 import java.util.List;

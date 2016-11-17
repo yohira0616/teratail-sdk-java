@@ -1,7 +1,6 @@
 package teratail.service.spec;
 
-import sun.jvm.hotspot.debugger.Page;
-import teratail.model.Pagination;
+import teratail.model.request.Pagination;
 import teratail.model.response.question.QuestionListEntity;
 import teratail.model.response.tag.TagListEntity;
 import teratail.model.response.user.UserEntity;
