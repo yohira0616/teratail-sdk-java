@@ -7,14 +7,14 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.message.BasicHeader;
+import teratail.common.ApiClientUtil;
 import teratail.common.TeratailHost;
+import teratail.model.Pagination;
 import teratail.model.response.question.QuestionEntity;
 import teratail.model.response.question.QuestionListEntity;
 import teratail.service.spec.QuestionServiceSpec;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class QuestionService implements QuestionServiceSpec {
@@ -36,7 +36,7 @@ public class QuestionService implements QuestionServiceSpec {
   @Override
   public QuestionListEntity findAll() {
     try {
-      List<Header> header = makeRequestHeader();
+      List<Header> header = ApiClientUtil.makeRequestHeader(accessToken);
       HttpClient client = HttpClientBuilder.create().setDefaultHeaders(header).build();
       HttpGet httpGet = new HttpGet(TeratailHost.HOST + API_BASE);
       HttpResponse response = client.execute(httpGet);
@@ -48,9 +48,23 @@ public class QuestionService implements QuestionServiceSpec {
   }
 
   @Override
+  public QuestionListEntity findAll(Pagination pagination) {
+    try {
+      List<Header> header = ApiClientUtil.makeRequestHeader(accessToken);
+      HttpClient client = HttpClientBuilder.create().setDefaultHeaders(header).build();
+      HttpGet httpGet = new HttpGet(TeratailHost.HOST + API_BASE + ApiClientUtil.makeRequestParameter(pagination));
+      HttpResponse response = client.execute(httpGet);
+      return objectMapper.readValue(response.getEntity().getContent(), QuestionListEntity.class);
+    } catch (IOException e) {
+      e.printStackTrace();
+      throw new RuntimeException();
+    }
+  }
+
+  @Override
   public QuestionEntity findOne(int questionId) {
     try {
-      List<Header> header = makeRequestHeader();
+      List<Header> header = ApiClientUtil.makeRequestHeader(accessToken);
       HttpClient client = HttpClientBuilder.create().setDefaultHeaders(header).build();
       HttpGet httpGet = new HttpGet(TeratailHost.HOST + API_BASE + "/" + questionId);
       HttpResponse response = client.execute(httpGet);
@@ -60,13 +74,5 @@ public class QuestionService implements QuestionServiceSpec {
       e.printStackTrace();
       throw new RuntimeException();
     }
-  }
-
-  private List<Header> makeRequestHeader(){
-    List<Header> header = new ArrayList<>();
-    if (!accessToken.equals("")) {
-      header.add(new BasicHeader("Authorization", "Bearer " + accessToken));
-    }
-    return header;
   }
 }

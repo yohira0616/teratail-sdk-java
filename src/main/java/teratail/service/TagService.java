@@ -7,15 +7,15 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.message.BasicHeader;
+import teratail.common.ApiClientUtil;
 import teratail.common.TeratailHost;
+import teratail.model.Pagination;
 import teratail.model.response.tag.TagEntity;
 import teratail.model.response.tag.TagListEntity;
 import teratail.model.response.tag.TagQuestionEntity;
 import teratail.service.spec.TagServiceSpec;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class TagService implements TagServiceSpec {
@@ -36,7 +36,7 @@ public class TagService implements TagServiceSpec {
   @Override
   public TagListEntity findAll() {
     try {
-      List<Header> header = makeRequestHeader();
+      List<Header> header = ApiClientUtil.makeRequestHeader(accessToken);
       HttpClient client = HttpClientBuilder.create().setDefaultHeaders(header).build();
       HttpGet httpGet = new HttpGet(TeratailHost.HOST + API_BASE);
       HttpResponse response = client.execute(httpGet);
@@ -48,9 +48,23 @@ public class TagService implements TagServiceSpec {
   }
 
   @Override
+  public TagListEntity findAll(Pagination pagination) {
+    try {
+      List<Header> header = ApiClientUtil.makeRequestHeader(accessToken);
+      HttpClient client = HttpClientBuilder.create().setDefaultHeaders(header).build();
+      HttpGet httpGet = new HttpGet(TeratailHost.HOST + API_BASE + ApiClientUtil.makeRequestParameter(pagination));
+      HttpResponse response = client.execute(httpGet);
+      return objectMapper.readValue(response.getEntity().getContent(), TagListEntity.class);
+    } catch (IOException e) {
+      e.printStackTrace();
+      throw new RuntimeException();
+    }
+  }
+
+  @Override
   public TagEntity findOne(String tagName) {
     try {
-      List<Header> header = makeRequestHeader();
+      List<Header> header = ApiClientUtil.makeRequestHeader(accessToken);
       HttpClient client = HttpClientBuilder.create().setDefaultHeaders(header).build();
       HttpGet httpGet = new HttpGet(TeratailHost.HOST + API_BASE + "/" + tagName);
       HttpResponse response = client.execute(httpGet);
@@ -64,7 +78,7 @@ public class TagService implements TagServiceSpec {
   @Override
   public TagQuestionEntity findByTagName(String tagName) {
     try {
-      List<Header> header = makeRequestHeader();
+      List<Header> header = ApiClientUtil.makeRequestHeader(accessToken);
       HttpClient client = HttpClientBuilder.create().setDefaultHeaders(header).build();
       HttpGet httpGet = new HttpGet(TeratailHost.HOST + API_BASE + "/" + tagName + "/questions");
       HttpResponse response = client.execute(httpGet);
@@ -75,11 +89,18 @@ public class TagService implements TagServiceSpec {
     }
   }
 
-  private List<Header> makeRequestHeader(){
-    List<Header> header = new ArrayList<>();
-    if (!accessToken.equals("")) {
-      header.add(new BasicHeader("Authorization", "Bearer " + accessToken));
+  @Override
+  public TagQuestionEntity findByTagName(String tagName, Pagination pagination) {
+    try {
+      List<Header> header = ApiClientUtil.makeRequestHeader(accessToken);
+      HttpClient client = HttpClientBuilder.create().setDefaultHeaders(header).build();
+      HttpGet httpGet = new HttpGet(TeratailHost.HOST + API_BASE + "/" + tagName + "/questions" +
+          ApiClientUtil.makeRequestParameter(pagination));
+      HttpResponse response = client.execute(httpGet);
+      return objectMapper.readValue(response.getEntity().getContent(), TagQuestionEntity.class);
+    } catch (IOException e) {
+      e.printStackTrace();
+      throw new RuntimeException();
     }
-    return header;
   }
 }

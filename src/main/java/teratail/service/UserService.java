@@ -8,7 +8,9 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicHeader;
+import teratail.common.ApiClientUtil;
 import teratail.common.TeratailHost;
+import teratail.model.Pagination;
 import teratail.model.response.question.QuestionListEntity;
 import teratail.model.response.tag.TagListEntity;
 import teratail.model.response.user.UserEntity;
@@ -38,7 +40,7 @@ public class UserService implements UserServiceSpec {
   @Override
   public UserListEntity findAll() {
     try {
-      List<Header> header = makeRequestHeader();
+      List<Header> header = ApiClientUtil.makeRequestHeader(accessToken);
       HttpClient client = HttpClientBuilder.create().setDefaultHeaders(header).build();
       HttpGet httpGet = new HttpGet(TeratailHost.HOST + API_BASE);
       HttpResponse response = client.execute(httpGet);
@@ -50,9 +52,14 @@ public class UserService implements UserServiceSpec {
   }
 
   @Override
+  public UserListEntity findAll(Pagination pagination) {
+    return null;
+  }
+
+  @Override
   public UserListEntity findByName(String query) {
     try {
-      List<Header> header = makeRequestHeader();
+      List<Header> header = ApiClientUtil.makeRequestHeader(accessToken);
       HttpClient client = HttpClientBuilder.create().setDefaultHeaders(header).build();
       HttpGet httpGet = new HttpGet(TeratailHost.HOST + API_BASE + "/search?q=" + query);
       HttpResponse response = client.execute(httpGet);
@@ -64,9 +71,14 @@ public class UserService implements UserServiceSpec {
   }
 
   @Override
+  public UserListEntity findByName(String query, Pagination pagination) {
+    return null;
+  }
+
+  @Override
   public UserEntity findOne(String displayName) {
     try {
-      List<Header> header = makeRequestHeader();
+      List<Header> header = ApiClientUtil.makeRequestHeader(accessToken);
       HttpClient client = HttpClientBuilder.create().setDefaultHeaders(header).build();
       HttpGet httpGet = new HttpGet(TeratailHost.HOST + API_BASE + "/" + displayName);
       HttpResponse response = client.execute(httpGet);
@@ -80,7 +92,7 @@ public class UserService implements UserServiceSpec {
   @Override
   public TagListEntity findMyTags(String displayName) {
     try {
-      List<Header> header = makeRequestHeader();
+      List<Header> header = ApiClientUtil.makeRequestHeader(accessToken);
       HttpClient client = HttpClientBuilder.create().setDefaultHeaders(header).build();
       HttpGet httpGet = new HttpGet(TeratailHost.HOST + API_BASE + "/" + displayName + "/tags");
       HttpResponse response = client.execute(httpGet);
@@ -92,9 +104,14 @@ public class UserService implements UserServiceSpec {
   }
 
   @Override
+  public TagListEntity findMyTags(String displayName, Pagination pagination) {
+    return null;
+  }
+
+  @Override
   public QuestionListEntity findClippedQuestion(String displayName) {
     try {
-      List<Header> header = makeRequestHeader();
+      List<Header> header = ApiClientUtil.makeRequestHeader(accessToken);
       HttpClient client = HttpClientBuilder.create().setDefaultHeaders(header).build();
       HttpGet httpGet = new HttpGet(TeratailHost.HOST + API_BASE + "/" + displayName + "/clips");
       HttpResponse response = client.execute(httpGet);
@@ -106,9 +123,14 @@ public class UserService implements UserServiceSpec {
   }
 
   @Override
+  public QuestionListEntity findClippedQuestion(String displayName, Pagination pagination) {
+    return null;
+  }
+
+  @Override
   public QuestionListEntity findQuestions(String displayName) {
     try {
-      List<Header> header = makeRequestHeader();
+      List<Header> header = ApiClientUtil.makeRequestHeader(accessToken);
       HttpClient client = HttpClientBuilder.create().setDefaultHeaders(header).build();
       HttpGet httpGet = new HttpGet(TeratailHost.HOST + API_BASE + "/" + displayName + "/questions");
       HttpResponse response = client.execute(httpGet);
@@ -120,9 +142,14 @@ public class UserService implements UserServiceSpec {
   }
 
   @Override
+  public QuestionListEntity findQuestions(String displayName, Pagination pagination) {
+    return null;
+  }
+
+  @Override
   public QuestionListEntity findReplies(String displayName) {
     try {
-      List<Header> header = makeRequestHeader();
+      List<Header> header = ApiClientUtil.makeRequestHeader(accessToken);
       HttpClient client = HttpClientBuilder.create().setDefaultHeaders(header).build();
       HttpGet httpGet = new HttpGet(TeratailHost.HOST + API_BASE + "/" + displayName + "/replies");
       HttpResponse response = client.execute(httpGet);
@@ -134,9 +161,14 @@ public class UserService implements UserServiceSpec {
   }
 
   @Override
+  public QuestionListEntity findReplies(String displayName, Pagination pagination) {
+    return null;
+  }
+
+  @Override
   public UserListEntity getFollower(String displayName) {
     try {
-      List<Header> header = makeRequestHeader();
+      List<Header> header = ApiClientUtil.makeRequestHeader(accessToken);
       HttpClient client = HttpClientBuilder.create().setDefaultHeaders(header).build();
       HttpGet httpGet = new HttpGet(TeratailHost.HOST + API_BASE + "/" + displayName + "/followers");
       HttpResponse response = client.execute(httpGet);
@@ -148,9 +180,14 @@ public class UserService implements UserServiceSpec {
   }
 
   @Override
+  public UserListEntity getFollower(String displayName, Pagination pagination) {
+    return null;
+  }
+
+  @Override
   public UserListEntity getFollowing(String displayName) {
     try {
-      List<Header> header = makeRequestHeader();
+      List<Header> header = ApiClientUtil.makeRequestHeader(accessToken);
       HttpClient client = HttpClientBuilder.create().setDefaultHeaders(header).build();
       HttpGet httpGet = new HttpGet(TeratailHost.HOST + API_BASE + "/" + displayName + "/followings");
       HttpResponse response = client.execute(httpGet);
@@ -161,11 +198,8 @@ public class UserService implements UserServiceSpec {
     }
   }
 
-  private List<Header> makeRequestHeader(){
-    List<Header> header = new ArrayList<>();
-    if (!accessToken.equals("")) {
-      header.add(new BasicHeader("Authorization", "Bearer " + accessToken));
-    }
-    return header;
+  @Override
+  public UserListEntity getFollowing(String displayName, Pagination pagination) {
+    return null;
   }
 }
