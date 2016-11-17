@@ -2,10 +2,12 @@ package teratail.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.message.BasicHeader;
 import teratail.common.TeratailHost;
 import teratail.model.response.question.QuestionListEntity;
 import teratail.model.response.tag.TagListEntity;
@@ -14,6 +16,8 @@ import teratail.model.response.user.UserListEntity;
 import teratail.service.spec.UserServiceSpec;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserService implements UserServiceSpec {
 
@@ -34,7 +38,8 @@ public class UserService implements UserServiceSpec {
   @Override
   public UserListEntity findAll() {
     try {
-      HttpClient client = HttpClientBuilder.create().build();
+      List<Header> header = makeRequestHeader();
+      HttpClient client = HttpClientBuilder.create().setDefaultHeaders(header).build();
       HttpGet httpGet = new HttpGet(TeratailHost.HOST + API_BASE);
       HttpResponse response = client.execute(httpGet);
       return objectMapper.readValue(response.getEntity().getContent(), UserListEntity.class);
@@ -47,7 +52,8 @@ public class UserService implements UserServiceSpec {
   @Override
   public UserListEntity findByName(String query) {
     try {
-      HttpClient client = HttpClientBuilder.create().build();
+      List<Header> header = makeRequestHeader();
+      HttpClient client = HttpClientBuilder.create().setDefaultHeaders(header).build();
       HttpGet httpGet = new HttpGet(TeratailHost.HOST + API_BASE + "/search?q=" + query);
       HttpResponse response = client.execute(httpGet);
       return objectMapper.readValue(response.getEntity().getContent(), UserListEntity.class);
@@ -60,7 +66,8 @@ public class UserService implements UserServiceSpec {
   @Override
   public UserEntity findOne(String displayName) {
     try {
-      HttpClient client = HttpClientBuilder.create().build();
+      List<Header> header = makeRequestHeader();
+      HttpClient client = HttpClientBuilder.create().setDefaultHeaders(header).build();
       HttpGet httpGet = new HttpGet(TeratailHost.HOST + API_BASE + "/" + displayName);
       HttpResponse response = client.execute(httpGet);
       return objectMapper.readValue(response.getEntity().getContent(), UserEntity.class);
@@ -73,7 +80,8 @@ public class UserService implements UserServiceSpec {
   @Override
   public TagListEntity findMyTags(String displayName) {
     try {
-      HttpClient client = HttpClientBuilder.create().build();
+      List<Header> header = makeRequestHeader();
+      HttpClient client = HttpClientBuilder.create().setDefaultHeaders(header).build();
       HttpGet httpGet = new HttpGet(TeratailHost.HOST + API_BASE + "/" + displayName + "/tags");
       HttpResponse response = client.execute(httpGet);
       return objectMapper.readValue(response.getEntity().getContent(), TagListEntity.class);
@@ -86,7 +94,8 @@ public class UserService implements UserServiceSpec {
   @Override
   public QuestionListEntity findClippedQuestion(String displayName) {
     try {
-      HttpClient client = HttpClientBuilder.create().build();
+      List<Header> header = makeRequestHeader();
+      HttpClient client = HttpClientBuilder.create().setDefaultHeaders(header).build();
       HttpGet httpGet = new HttpGet(TeratailHost.HOST + API_BASE + "/" + displayName + "/clips");
       HttpResponse response = client.execute(httpGet);
       return objectMapper.readValue(response.getEntity().getContent(), QuestionListEntity.class);
@@ -99,7 +108,8 @@ public class UserService implements UserServiceSpec {
   @Override
   public QuestionListEntity findQuestions(String displayName) {
     try {
-      HttpClient client = HttpClientBuilder.create().build();
+      List<Header> header = makeRequestHeader();
+      HttpClient client = HttpClientBuilder.create().setDefaultHeaders(header).build();
       HttpGet httpGet = new HttpGet(TeratailHost.HOST + API_BASE + "/" + displayName + "/questions");
       HttpResponse response = client.execute(httpGet);
       return objectMapper.readValue(response.getEntity().getContent(), QuestionListEntity.class);
@@ -112,7 +122,8 @@ public class UserService implements UserServiceSpec {
   @Override
   public QuestionListEntity findReplies(String displayName) {
     try {
-      HttpClient client = HttpClientBuilder.create().build();
+      List<Header> header = makeRequestHeader();
+      HttpClient client = HttpClientBuilder.create().setDefaultHeaders(header).build();
       HttpGet httpGet = new HttpGet(TeratailHost.HOST + API_BASE + "/" + displayName + "/replies");
       HttpResponse response = client.execute(httpGet);
       return objectMapper.readValue(response.getEntity().getContent(), QuestionListEntity.class);
@@ -125,7 +136,8 @@ public class UserService implements UserServiceSpec {
   @Override
   public UserListEntity getFollower(String displayName) {
     try {
-      HttpClient client = HttpClientBuilder.create().build();
+      List<Header> header = makeRequestHeader();
+      HttpClient client = HttpClientBuilder.create().setDefaultHeaders(header).build();
       HttpGet httpGet = new HttpGet(TeratailHost.HOST + API_BASE + "/" + displayName + "/followers");
       HttpResponse response = client.execute(httpGet);
       return objectMapper.readValue(response.getEntity().getContent(), UserListEntity.class);
@@ -138,7 +150,8 @@ public class UserService implements UserServiceSpec {
   @Override
   public UserListEntity getFollowing(String displayName) {
     try {
-      HttpClient client = HttpClientBuilder.create().build();
+      List<Header> header = makeRequestHeader();
+      HttpClient client = HttpClientBuilder.create().setDefaultHeaders(header).build();
       HttpGet httpGet = new HttpGet(TeratailHost.HOST + API_BASE + "/" + displayName + "/followings");
       HttpResponse response = client.execute(httpGet);
       return objectMapper.readValue(response.getEntity().getContent(), UserListEntity.class);
@@ -146,5 +159,13 @@ public class UserService implements UserServiceSpec {
       e.printStackTrace();
       throw new RuntimeException();
     }
+  }
+
+  private List<Header> makeRequestHeader(){
+    List<Header> header = new ArrayList<>();
+    if (!accessToken.equals("")) {
+      header.add(new BasicHeader("Authorization", "Bearer " + accessToken));
+    }
+    return header;
   }
 }

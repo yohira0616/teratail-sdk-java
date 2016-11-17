@@ -15,7 +15,6 @@ public class Teratail {
   private String accessToken;
 
   public Teratail() {
-    this.accessToken = "";
     questionService = new QuestionService();
     tagService = new TagService();
     userService = new UserService();
